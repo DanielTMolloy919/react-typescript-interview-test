@@ -5,7 +5,7 @@ import "./index.css"; // Basic styling
 
 export default function App() {
   const [allItems, setAllItems] = useState<Item[]>([]);
-  const [filterText, setFilterText] = useState(""); // Default filter
+  const [filterText, setFilterText] = useState("");
 
   // Simulate fetching data
   useEffect(() => {
