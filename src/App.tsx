@@ -6,7 +6,6 @@ import "./index.css"; // Basic styling
 export default function App() {
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [filterText, setFilterText] = useState(""); // Default filter
-  const [filteredItems, setFilteredItems] = useState<Item[]>([]);
 
   // Simulate fetching data
   useEffect(() => {
@@ -16,18 +15,11 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Effect to apply the filter whenever allItems or filterText changes
-  useEffect(() => {
-    if (!filterText) {
-      setFilteredItems(allItems); // Show all if filter is empty
-    } else {
-      const results = allItems.filter((item) => {
-        return filterText.toLowerCase().includes(item.name.toLowerCase());
-      });
-      console.log("Filter results:", results);
-      setFilteredItems(results);
-    }
-  }, [allItems, filterText]);
+  const filteredItems = !filterText
+    ? allItems
+    : allItems.filter((item) =>
+        filterText.toLowerCase().includes(item.name.toLowerCase())
+      );
 
   return (
     <div className="App">
